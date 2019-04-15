@@ -6,8 +6,13 @@ import Movie from './Movie'
 class App extends Component {
   // Render : componentWillMount() -> render() -> componentDidMount()
   // Update : componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()   
+
   componentWillMount(){
     console.log('will mount')
+    fetch('https://yts.am/api/v2/list_movies.json?sort_by=rating')
+    .then(potato => potato.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(err))
   }
 
   componentDidMount(){
@@ -20,29 +25,7 @@ class App extends Component {
       })
     }, 2000)
 
-    setTimeout(()=>{
-      this.setState({
-        movies: [
-          {
-            title: "The Load of the Rings",
-            poster: "https://images-na.ssl-images-amazon.com/images/I/51uGVkvLkCL.jpg"
-          },
-          {
-            title: "Harry Potter",
-            poster: "http://imgc.allpostersimages.com/img/posters/harry-potter-candles_u-L-F9DGY50.jpg"
-          },
-          {
-            title: "Star Wars",
-            poster: "https://imgc.allpostersimages.com/img/print/u-g-F8G58H0.jpg?w=300&h=450"
-          },
-          {
-            title: "I am Sam",
-            poster: "https://m.media-amazon.com/images/M/MV5BMjE2Mzk5MTAxMV5BMl5BanBnXkFtZTcwNDQyMjgyMQ@@._V1_.jpg"
-          }
-        ]
-      })
-      console.log('hello')
-    },3000)
+
   }
 
   state = {
