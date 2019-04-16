@@ -8,11 +8,11 @@ class App extends Component {
   // Update : componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()   
 
   componentWillMount(){
-    console.log('will mount')
+    // console.log('will mount')
   }
 
   componentDidMount(){
-    console.log('did mount')
+    // console.log('did mount')
 
     setTimeout(()=>{
       // this.state.greeting = 'something' 
@@ -29,7 +29,6 @@ class App extends Component {
 
   _renderMovies = () => {
     const movies = this.state.movies.map((movie, index) => {
-      console.log(movie)
       return <Movie 
       title={movie.title_english} 
       poster={movie.medium_cover_image} 
@@ -57,10 +56,10 @@ class App extends Component {
   }
 
   render() {
-    console.log('did render')
+    const { movies } = this.state;
     return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : 'Loading'}
+      <div className={movies ? "App" : "App--loading"}>
+        {movies ? this._renderMovies() : 'Loading'}
       </div>
     );
   }
